@@ -1,0 +1,14 @@
+<div class="form-info has-text-grey" *ngIf="page === 'signup'">
+  <div class="info-text">
+    Already have an account? <a routerLink="/login">Log in</a> now!
+  </div>
+</div>
+
+<div *ngIf="page === 'login'">
+  <div class="form-info has-text-grey">
+    Don't have an account? <a routerLink="/signup">Sign up</a> now!
+  </div>
+  <div class="form-info has-text-grey">
+    Forgot your password? <a routerLink="/forgot">Click here</a>!
+  </div>
+</div>

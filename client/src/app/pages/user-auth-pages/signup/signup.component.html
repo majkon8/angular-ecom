@@ -1,0 +1,37 @@
+<div class="centered-content">
+  <div class="white-box">
+    <app-form-header text="Sign up"></app-form-header>
+
+    <app-display-message
+      *ngIf="errorMessage"
+      [text]="errorMessage"
+    ></app-display-message>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <app-user-auth-control
+        [formGroup]="signupForm"
+        controlName="email"
+        type="email"
+        placeholder="Email"
+      ></app-user-auth-control>
+
+      <app-user-auth-control
+        [formGroup]="signupForm"
+        controlName="password"
+        type="password"
+        placeholder="Password"
+      ></app-user-auth-control>
+
+      <app-user-auth-control
+        [formGroup]="signupForm"
+        controlName="confirmPassword"
+        type="password"
+        placeholder="Confirm password"
+      ></app-user-auth-control>
+
+      <app-submit-button [formGroup]="signupForm"></app-submit-button>
+    </form>
+
+    <app-form-info page="signup"></app-form-info>
+  </div>
+</div>

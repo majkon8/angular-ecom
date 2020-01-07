@@ -1,0 +1,132 @@
+<div class="input-container">
+  <div class="control has-icons-left">
+    <input
+      class="input is-medium is-rounded"
+      type="text"
+      placeholder="Search by name"
+      [(ngModel)]="searchFor"
+      (input)="filterByName()"
+    />
+    <span class="icon is-left">
+      <i class="fas fa-search"></i>
+    </span>
+  </div>
+</div>
+
+<div class="container">
+  <p class="title">
+    {{ isAdmin ? "All purchases" : "Your purchase history" }}
+  </p>
+  <button
+    [routerLink]="['/account', userId, 'details']"
+    class="button is-primary details-button"
+  >
+    Account details
+  </button>
+
+  <div class="selects-container">
+    <div class="pages-container">
+      <app-per-page
+        (perPageSelected)="selectPerPage($event)"
+        [perPage]="perPage"
+      ></app-per-page>
+      <app-secondary-pagination
+        *ngIf="filteredAndSortedPurchases"
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChanged)="setCurrentPage($event)"
+      ></app-secondary-pagination>
+    </div>
+    <div class="sort-container">
+      <app-sort-by
+        page="purchases"
+        [toSortArr]="filteredAndSortedPurchases"
+        [currentSort]="currentSort"
+        (sortChanged)="changeSort($event)"
+      ></app-sort-by>
+    </div>
+  </div>
+
+  <div *ngIf="!filteredAndSortedPurchases" class="loading">Loading...</div>
+  <div *ngIf="filteredAndSortedPurchases">
+    <div
+      *ngFor="
+        let purchase of filteredAndSortedPurchases.slice(
+          currentPage * perPage - perPage,
+          currentPage * perPage
+        )
+      "
+      class="purchase-container"
+    >
+      <div class="purchase">
+        <a
+          [title]="
+            purchase.shippingDetails.lastName +
+            ' ' +
+            purchase.shippingDetails.firstName
+          "
+          *ngIf="isAdmin"
+          class="user-name"
+          [href]="
+            'http://localhost:4200/account/' + purchase._userId + '/details'
+          "
+          (click)="goToUser($event, purchase._userId)"
+        >
+          Buyer:
+          <span class="last-name"
+            >{{ purchase.shippingDetails.lastName }}
+          </span>
+          <span>{{ purchase.shippingDetails.firstName }}</span>
+        </a>
+        <div class="image-and-name">
+          <div class="image">
+            <img [src]="purchase.product.imageUrl" />
+          </div>
+          <a
+            [href]="'http://localhost:4200/product/' + purchase.product._id"
+            class="name"
+            (click)="goToProduct($event, purchase.product._id)"
+            >{{ purchase.product.name }}</a
+          >
+        </div>
+        <p class="prop date">Date: {{ purchase.date | date }}</p>
+        <p class="prop qty">Qty: {{ purchase.quantity }}</p>
+        <p class="prop price">
+          Price: ${{ purchase.quantity * purchase.product.price }}
+        </p>
+      </div>
+      <a class="more-details" (click)="toggleShippingDetails(purchase._id)"
+        >Shipping details</a
+      >
+      <div
+        class="details"
+        *ngIf="showShippingDetailsIds.includes(purchase._id)"
+      >
+        <p class="detail">
+          {{ purchase.shippingDetails.firstName }}
+          {{ purchase.shippingDetails.lastName }}
+        </p>
+        <p class="detail">
+          {{ purchase.shippingDetails.street }}
+        </p>
+        <p class="detail">
+          {{ purchase.shippingDetails.city }}
+        </p>
+        <p class="detail">
+          {{ purchase.shippingDetails.country }}
+        </p>
+        <p class="detail">
+          {{ purchase.shippingDetails.postcode }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pagination-container">
+  <app-main-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChanged)="setCurrentPage($event)"
+  ></app-main-pagination>
+</div>

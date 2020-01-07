@@ -1,0 +1,68 @@
+<div class="title">
+  {{ data.type === "new" ? "New product" : "Edit product" }}
+</div>
+
+<form #productForm="ngForm" (ngSubmit)="submit()">
+  <input
+    [(ngModel)]="product.name"
+    #name="ngModel"
+    type="text"
+    class="input"
+    name="name"
+    placeholder="Product name"
+    required
+  />
+  <input
+    [(ngModel)]="product.imageUrl"
+    #image="ngModel"
+    type="text"
+    class="input"
+    name="image"
+    placeholder="Image URL"
+    required
+  />
+  <textarea
+    [(ngModel)]="product.shortDescription"
+    #shortDescription="ngModel"
+    class="textarea"
+    name="shortDescription"
+    placeholder="Short description"
+    rows="5"
+    required
+  ></textarea>
+  <textarea
+    [(ngModel)]="product.longDescription"
+    #shortDescription="ngModel"
+    class="textarea"
+    name="longDescription"
+    placeholder="Long description"
+    rows="5"
+    required
+  ></textarea>
+  <input
+    [(ngModel)]="product.price"
+    #shortDescription="ngModel"
+    type="number"
+    min="0"
+    class="input"
+    name="price"
+    (change)="validatePrice($event)"
+    required
+  />
+  <input
+    [(ngModel)]="product.tag"
+    #shortDescription="ngModel"
+    type="text"
+    class="input"
+    name="tag"
+    placeholder="Tag i.e. phone"
+    required
+  />
+  <button
+    class="button is-primary"
+    [disabled]="!productForm.valid"
+    type="submit"
+  >
+    Submit
+  </button>
+</form>

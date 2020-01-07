@@ -1,0 +1,81 @@
+<div *ngIf="!showSuccessMessage" class="container">
+  <div class="title">Checkout</div>
+  <h1 class="details">Shipping details:</h1>
+  <form #checkoutForm="ngForm" (ngSubmit)="order()">
+    <input
+      [(ngModel)]="shippingDetails.firstName"
+      #firstName="ngModel"
+      name="firstName"
+      type="text"
+      class="input"
+      placeholder="First name"
+      required
+    />
+    <input
+      [(ngModel)]="shippingDetails.lastName"
+      #lastName="ngModel"
+      name="lastName"
+      type="text"
+      class="input"
+      placeholder="Last name"
+      required
+    />
+    <input
+      [(ngModel)]="shippingDetails.street"
+      #street="ngModel"
+      name="street"
+      type="text"
+      class="input"
+      placeholder="Street"
+      required
+    />
+    <input
+      [(ngModel)]="shippingDetails.city"
+      #city="ngModel"
+      name="city"
+      type="text"
+      class="input"
+      placeholder="City"
+      required
+    />
+    <input
+      [(ngModel)]="shippingDetails.country"
+      #country="ngModel"
+      name="country"
+      type="text"
+      class="input inline-input"
+      placeholder="Country"
+      required
+    />
+    <div class="total total-big">Total price: ${{ totalPrice }}</div>
+    <input
+      [(ngModel)]="shippingDetails.postcode"
+      #postcode="ngModel"
+      name="postcode"
+      type="text"
+      class="input inline-input"
+      placeholder="Postcode"
+      required
+    />
+    <div *ngIf="!checkoutForm.valid" class="error error-small has-text-danger">
+      All shipping details must be provided
+    </div>
+    <div class="total total-small">Total price: ${{ totalPrice }}</div>
+    <button
+      type="submit"
+      class="button is-success"
+      [disabled]="!checkoutForm.valid"
+    >
+      ORDER
+    </button>
+    <div *ngIf="!checkoutForm.valid" class="error error-big has-text-danger">
+      All shipping details must be provided
+    </div>
+  </form>
+</div>
+
+<div *ngIf="showSuccessMessage" class="container message-container">
+  <div class="success-message has-text-success">
+    Thank you for shopping with us!
+  </div>
+</div>

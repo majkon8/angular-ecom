@@ -1,0 +1,85 @@
+<div *ngIf="product" class="container">
+  <button
+    [routerLink]="[baseUrlToReturn, urlToReturnParams]"
+    class="button is-primary back"
+  >
+    <i class="fas fa-arrow-left"></i>Back
+  </button>
+  <div class="name">{{ product?.name }}</div>
+  <div
+    class="has-text-success added-info"
+    [ngClass]="{ faded: !showAddedToCartMessage }"
+  >
+    Added to cart
+  </div>
+  <div class="inner-container">
+    <div class="image">
+      <img *ngIf="product" [src]="product.imageUrl" />
+    </div>
+    <div class="helper-container">
+      <div class="descriptions-container">
+        <div class="short-description">
+          <p class="about-info">About the product:</p>
+          {{ product?.shortDescription }}
+        </div>
+        <div class="long-description">
+          <p class="about-info">Full description:</p>
+          {{ product?.longDescription }}
+        </div>
+      </div>
+      <div class="buy-options">
+        <div class="price has-text-success">${{ product?.price }}</div>
+        <div class="button-and-quantity">
+          <div class="input-container">
+            <button
+              class="button is-primary is-rounded"
+              (click)="decrementProducts()"
+              [disabled]="numberOfProducts === 1"
+            >
+              <i class="fas fa-minus"></i>
+            </button>
+            <input
+              [value]="numberOfProducts"
+              (change)="validateControl($event)"
+              class="input is-rounded"
+            />
+            <button
+              class="button is-primary is-rounded"
+              (click)="incrementProducts()"
+            >
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+
+          <button
+            (click)="addToCart()"
+            class="button cart-button is-rounded is-primary"
+          >
+            Add to cart <i class="fas fa-cart-plus"></i>
+          </button>
+          <button
+            class="button cart-button is-rounded is-success"
+            [routerLink]="isLoggedIn ? ['/checkout', product._id] : ['/login']"
+            [queryParams]="{ quantity: numberOfProducts }"
+          >
+            Buy now!
+          </button>
+        </div>
+        <div class="info"><i class="far fa-clock"></i>Delivery in 48h!</div>
+        <div class="info"><i class="fas fa-truck"></i>Free shipping!</div>
+        <div *ngIf="isAdmin$ | async" class="admin-panel">
+          <div title="edit" class="admin-button edit" (click)="editProduct()">
+            <i class="fas fa-edit"></i>
+          </div>
+          <div
+            title="delete"
+            class="admin-button trash"
+            (click)="deleteProduct()"
+          >
+            <i class="fas fa-trash-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

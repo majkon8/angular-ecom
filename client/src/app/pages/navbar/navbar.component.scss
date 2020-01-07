@@ -1,0 +1,14 @@
+@import "../../../main-styles.scss";
+
+.logo {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+
+  &:first-letter {
+    color: $primary;
+  }
+}
+
+.navbar-item {
+  font-size: 18px;
+}

@@ -1,0 +1,83 @@
+<div class="title">
+  {{
+    data.infoType === "personal"
+      ? "Edit personal informations"
+      : "Edit address details"
+  }}
+</div>
+
+<form
+  *ngIf="data.infoType === 'personal'"
+  #personalForm="ngForm"
+  (ngSubmit)="updatePersonalInfo()"
+>
+  <input
+    [(ngModel)]="personalInformations.email"
+    #email="ngModel"
+    name="email"
+    type="email"
+    class="input"
+    placeholder="Email address"
+    required
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"
+  />
+  <input
+    [(ngModel)]="personalInformations.firstName"
+    #firstName="ngModel"
+    name="firstName"
+    type="text"
+    class="input"
+    placeholder="First name"
+  />
+  <input
+    [(ngModel)]="personalInformations.lastName"
+    #lastName="ngModel"
+    name="lastName"
+    type="text"
+    class="input"
+    placeholder="Last name"
+  />
+  <button
+    type="submit"
+    [disabled]="!personalForm.valid"
+    class="button is-primary"
+  >
+    Submit
+  </button>
+</form>
+
+<form *ngIf="data.infoType === 'address'" (ngSubmit)="updateAddressDetails()">
+  <input
+    [(ngModel)]="addressDetails.street"
+    #street="ngModel"
+    name="street"
+    type="text"
+    class="input"
+    placeholder="Street"
+  />
+  <input
+    [(ngModel)]="addressDetails.city"
+    #city="ngModel"
+    name="city"
+    type="text"
+    class="input"
+    placeholder="City"
+  />
+  <input
+    [(ngModel)]="addressDetails.country"
+    #country="ngModel"
+    name="country"
+    type="text"
+    class="input"
+    placeholder="Country"
+  />
+  <input
+    [(ngModel)]="addressDetails.postcode"
+    #postcode="ngModel"
+    name="postcode"
+    type="text"
+    class="input"
+    placeholder="Postcode"
+  />
+  <button type="submit" class="button is-primary">Submit</button>
+</form>

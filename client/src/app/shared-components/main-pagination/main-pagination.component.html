@@ -1,0 +1,89 @@
+<nav
+  class="pagination is-centered is-rounded"
+  role="navigation"
+  aria-label="pagination"
+>
+  <button
+    class="pagination-previous button"
+    (click)="previousPage()"
+    [disabled]="currentPage === 1"
+  >
+    Previous
+  </button>
+  <button
+    class="pagination-next button"
+    (click)="nextPage()"
+    [disabled]="currentPage === totalPages || totalPages === 0"
+  >
+    Next page
+  </button>
+  <ul class="pagination-list">
+    <li>
+      <a
+        class="pagination-link"
+        [ngClass]="currentPage === 1 && 'is-current'"
+        (click)="goToPage(1)"
+        >1</a
+      >
+    </li>
+    <li *ngIf="currentPage > 3 && totalPages > 4">
+      <span class="pagination-ellipsis has-text-white">&hellip;</span>
+    </li>
+    <li *ngIf="totalPages > 2">
+      <a
+        #first
+        class="pagination-link"
+        [ngClass]="currentPage == first.textContent && 'is-current'"
+        (click)="goToPage(first.textContent)"
+        >{{
+          currentPage < 3 || totalPages < 5
+            ? 2
+            : currentPage > totalPages - 2
+            ? totalPages - 3
+            : currentPage - 1
+        }}</a
+      >
+    </li>
+    <li *ngIf="totalPages > 3">
+      <a
+        #second
+        class="pagination-link"
+        [ngClass]="currentPage == second.textContent && 'is-current'"
+        (click)="goToPage(second.textContent)"
+        >{{
+          currentPage < 3 || totalPages < 5
+            ? 3
+            : currentPage > totalPages - 2
+            ? totalPages - 2
+            : currentPage
+        }}</a
+      >
+    </li>
+    <li *ngIf="totalPages > 4">
+      <a
+        #third
+        class="pagination-link"
+        [ngClass]="currentPage == third.textContent && 'is-current'"
+        (click)="goToPage(third.textContent)"
+        >{{
+          currentPage < 3 || totalPages < 5
+            ? 4
+            : currentPage > totalPages - 2
+            ? totalPages - 1
+            : currentPage + 1
+        }}</a
+      >
+    </li>
+    <li *ngIf="currentPage < totalPages - 2 && totalPages > 4">
+      <span class="pagination-ellipsis has-text-white">&hellip;</span>
+    </li>
+    <li *ngIf="totalPages > 1">
+      <a
+        class="pagination-link"
+        [ngClass]="currentPage === totalPages && 'is-current'"
+        (click)="goToPage(totalPages)"
+        >{{ totalPages }}</a
+      >
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,175 @@
+<div class="input-container">
+  <div class="control has-icons-left">
+    <input
+      class="input is-medium is-rounded"
+      type="text"
+      placeholder="Search by name"
+      [(ngModel)]="searchFor"
+      (input)="filterByTagsAndName()"
+    />
+    <span class="icon is-left">
+      <i class="fas fa-search"></i>
+    </span>
+  </div>
+</div>
+
+<div class="buttons-container">
+  <div
+    id="phone"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('phone') }"
+  >
+    Phones
+  </div>
+  <div
+    id="laptop"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('laptop') }"
+  >
+    Laptops
+  </div>
+  <div
+    id="tablet"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('tablet') }"
+  >
+    Tablets
+  </div>
+  <div
+    id="console"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('console') }"
+  >
+    Consoles
+  </div>
+  <div
+    id="pc"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('pc') }"
+  >
+    PCs
+  </div>
+  <div
+    id="2in1"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('2in1') }"
+  >
+    2 in 1
+  </div>
+  <div
+    id="allinone"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('allinone') }"
+  >
+    All in one
+  </div>
+  <div
+    id="tv"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('tv') }"
+  >
+    TVs
+  </div>
+  <div
+    id="monitor"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('monitor') }"
+  >
+    Monitors
+  </div>
+  <div
+    id="photography"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('photography') }"
+  >
+    Photography
+  </div>
+  <div
+    id="other"
+    class="button is-rounded"
+    (click)="filterByTagsAndName($event)"
+    [ngClass]="{ 'is-active': currentFilters.includes('other') }"
+  >
+    Other
+  </div>
+</div>
+
+<div class="container">
+  <button
+    *ngIf="isAdmin$ | async"
+    class="button is-success is-rounded new-product"
+    (click)="newProduct()"
+  >
+    Add product
+  </button>
+  <div class="products-found has-text-grey">
+    {{ filteredAndSortedProducts?.length }} products found
+  </div>
+  <div class="selects-container">
+    <div class="pages-container">
+      <app-per-page
+        (perPageSelected)="selectPerPage($event)"
+        [perPage]="perPage"
+      ></app-per-page>
+      <app-secondary-pagination
+        *ngIf="filteredAndSortedProducts"
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChanged)="setCurrentPage($event)"
+      ></app-secondary-pagination>
+    </div>
+    <div class="sort-container">
+      <button
+        (click)="clearTags()"
+        *ngIf="currentFilters.length > 1"
+        class="button is-rounded is-danger clear-tags"
+      >
+        Clear tags <i class="fas fa-times"></i>
+      </button>
+      <app-sort-by
+        page="products"
+        [toSortArr]="filteredAndSortedProducts"
+        [currentSort]="currentSort"
+        (sortChanged)="changeSort($event)"
+      ></app-sort-by>
+    </div>
+  </div>
+  <div *ngIf="!filteredAndSortedProducts" class="loading">Loading...</div>
+  <div *ngIf="filteredAndSortedProducts" class="cards-container">
+    <app-product-card
+      *ngFor="
+        let product of filteredAndSortedProducts.slice(
+          currentPage * perPage - perPage,
+          currentPage * perPage
+        )
+      "
+      [product]="product"
+      [addedToCart]="idsOfProductsInCart?.includes(product._id)"
+      [isAdmin]="isAdmin$ | async"
+      (click)="goToProduct($event, product._id); $event.stopPropagation()"
+    ></app-product-card>
+    <div class="no-found" *ngIf="filteredAndSortedProducts.length === 0">
+      No products found
+    </div>
+  </div>
+</div>
+
+<div class="container pagination-container">
+  <app-main-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChanged)="setCurrentPage($event)"
+  ></app-main-pagination>
+</div>
+
+<app-footer></app-footer>

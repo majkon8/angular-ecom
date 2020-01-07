@@ -1,0 +1,39 @@
+<a [href]="'http://localhost:4200/product/' + product._id" class="container">
+  <div class="top">
+    <figure class="image">
+      <img [src]="product.imageUrl" />
+    </figure>
+  </div>
+  <div class="bottom">
+    <div [title]="product.name.toUpperCase()" class="name">
+      {{ product.name }}
+    </div>
+    <div class="description has-text-grey">
+      {{ product.shortDescription }}
+    </div>
+    <div class="price has-text-success">${{ product.price }}</div>
+    <button
+      class="button cart-button is-rounded is-pulled-right"
+      (click)="manageCart(); $event.stopPropagation()"
+      [ngClass]="{ 'in-cart': addedToCart, 'not-in-cart': !addedToCart }"
+    >
+      <i class="fas fa-cart-plus"></i>
+    </button>
+    <div *ngIf="isAdmin" class="admin-panel">
+      <div
+        title="edit"
+        class="admin-button edit"
+        (click)="editProduct($event); $event.stopPropagation()"
+      >
+        <i class="fas fa-edit"></i>
+      </div>
+      <div
+        title="delete"
+        class="admin-button trash"
+        (click)="deleteProduct($event); $event.stopPropagation()"
+      >
+        <i class="fas fa-trash-alt"></i>
+      </div>
+    </div>
+  </div>
+</a>

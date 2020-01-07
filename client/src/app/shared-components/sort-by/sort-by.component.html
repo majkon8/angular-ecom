@@ -1,0 +1,83 @@
+<div
+  class="dropdown"
+  [ngClass]="{ 'is-active': isActive, 'is-right': innerWidth > 460 }"
+>
+  <div
+    class="dropdown-trigger"
+    (click)="toggleIsActive()"
+    (appClickOutside)="deactivate()"
+  >
+    <button
+      class="button is-rounded"
+      aria-haspopup="true"
+      aria-controls="dropdown-menu"
+    >
+      <span>{{ currentSort }}</span>
+      <span class="icon is-small">
+        <i
+          class="fas fa-angle-down"
+          [ngClass]="isActive ? 'fa-angle-up' : 'fa-angle-down'"
+          aria-hidden="true"
+        ></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <a
+        *ngIf="page === 'products'"
+        class="dropdown-item"
+        [ngClass]="currentSort === 'Randomize' && 'is-active'"
+        (click)="changeSort($event.target.textContent)"
+      >
+        Randomize
+      </a>
+      <a
+        *ngIf="page === 'purchases'"
+        class="dropdown-item"
+        [ngClass]="currentSort === 'Date: new first' && 'is-active'"
+        (click)="changeSort($event.target.textContent)"
+      >
+        Date: new first
+      </a>
+      <a
+        *ngIf="page === 'purchases'"
+        class="dropdown-item"
+        [ngClass]="currentSort === 'Date: old first' && 'is-active'"
+        (click)="changeSort($event.target.textContent)"
+      >
+        Date: old first
+      </a>
+      <a
+        *ngIf="page != 'customers'"
+        class="dropdown-item"
+        [ngClass]="currentSort === 'Price: ascending' && 'is-active'"
+        (click)="changeSort($event.target.textContent)"
+      >
+        Price: ascending
+      </a>
+      <a
+        *ngIf="page != 'customers'"
+        class="dropdown-item"
+        [ngClass]="currentSort === 'Price: descending' && 'is-active'"
+        (click)="changeSort($event.target.textContent)"
+      >
+        Price: descending
+      </a>
+      <a
+        class="dropdown-item"
+        [ngClass]="currentSort === 'Name: A-Z' && 'is-active'"
+        (click)="changeSort($event.target.textContent)"
+      >
+        Name: A-Z
+      </a>
+      <a
+        class="dropdown-item"
+        [ngClass]="currentSort === 'Name: Z-A' && 'is-active'"
+        (click)="changeSort($event.target.textContent)"
+      >
+        Name: Z-A
+      </a>
+    </div>
+  </div>
+</div>

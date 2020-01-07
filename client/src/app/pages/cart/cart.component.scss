@@ -1,0 +1,169 @@
+.container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1025px) {
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 0;
+    border-radius: 0;
+    height: 100vh;
+    overflow: auto;
+  }
+
+  .title {
+    @media (max-width: 420px) {
+      font-size: 24px;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    .button {
+      width: 112px;
+    }
+  }
+
+  .product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(221, 221, 221);
+
+    @media (max-width: 750px) {
+      display: block;
+    }
+
+    .image {
+      width: 100px;
+
+      @media (max-width: 750px) {
+        display: inline-block;
+        width: 180px;
+      }
+
+      @media (max-width: 520px) {
+        width: 130px;
+      }
+
+      @media (max-width: 420px) {
+        display: block;
+        margin: 0 auto;
+        width: 180px;
+      }
+    }
+
+    .name {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: rgb(74, 74, 74);
+      width: 240px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 750px) {
+        width: unset;
+        display: inline-block;
+        line-height: 156px;
+        margin-left: 50px;
+        font-size: 18px;
+        max-width: 350px;
+      }
+
+      @media (max-width: 630px) {
+        margin-left: 15px;
+        max-width: 280px;
+        font-size: 16px;
+      }
+
+      @media (max-width: 520px) {
+        margin-left: 0;
+        max-width: 250px;
+        line-height: 112.5px;
+      }
+
+      @media (max-width: 420px) {
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        line-height: 30px;
+      }
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .input {
+        margin: 10px;
+        width: 48px;
+        height: 32px;
+        padding: 6px;
+        text-align: center;
+      }
+
+      .button {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+      }
+    }
+
+    .price {
+      font-weight: bold;
+      text-align: center;
+      margin: 5px 0;
+      width: 135px;
+
+      @media (max-width: 750px) {
+        width: unset;
+      }
+
+      .remove {
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+
+        @media (max-width: 750px) {
+          display: none;
+        }
+      }
+
+      .remove-button {
+        display: none;
+
+        @media (max-width: 750px) {
+          display: block;
+        }
+
+        @media (max-width: 420px) {
+          margin-top: 5px;
+        }
+
+        i {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  .total {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+}

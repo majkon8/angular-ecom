@@ -1,0 +1,34 @@
+.container {
+  margin-top: 50px;
+
+  .purchases-button {
+    display: block;
+  }
+
+  @media (max-width: 1024px) {
+    height: 94.5vh;
+    margin-top: 0;
+    border-radius: 0;
+  }
+
+  .info-title {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    display: inline-block;
+  }
+
+  .edit {
+    margin-left: 10px;
+  }
+
+  .detail {
+    margin: 5px 0;
+
+    .detail-title {
+      display: inline-block;
+      margin-right: 5px;
+      font-weight: bold;
+    }
+  }
+}

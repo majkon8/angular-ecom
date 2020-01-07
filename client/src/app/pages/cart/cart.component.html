@@ -1,0 +1,73 @@
+<div class="container">
+  <p class="title">Your shopping cart</p>
+  <div *ngIf="cart.length > 1" class="button-container">
+    <button
+      class="button is-rounded is-danger clear-button"
+      (click)="clearCart()"
+    >
+      Clear all
+    </button>
+  </div>
+
+  <div *ngFor="let cartItem of cart" class="product">
+    <div class="image">
+      <img [src]="cartItem.product.imageUrl" />
+    </div>
+
+    <a
+      [title]="cartItem.product.name.toUpperCase()"
+      class="name"
+      (click)="goToProduct(cartItem.product._id)"
+      >{{ cartItem.product.name }}</a
+    >
+    <div class="price">Price: ${{ cartItem.product.price }}</div>
+
+    <div class="input-container">
+      <button
+        class="button is-primary is-rounded"
+        (click)="decrementProducts(cartItem)"
+        [disabled]="cartItem.quantity === 1"
+      >
+        <i class="fas fa-minus"></i>
+      </button>
+      <input
+        class="input is-rounded"
+        [value]="cartItem.quantity"
+        (change)="validateControl($event, cartItem)"
+      />
+      <button
+        class="button is-primary is-rounded"
+        (click)="incrementProducts(cartItem)"
+      >
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+
+    <div class="price">
+      Total: ${{ cartItem.quantity * cartItem.product.price }}
+      <p
+        (click)="removeFromCart(cartItem.product)"
+        title="Remove"
+        class="remove"
+      >
+        <i class="fas fa-times has-text-danger"></i>
+      </p>
+
+      <button
+        (click)="removeFromCart(cartItem.product)"
+        title="Remove"
+        class="button is-rounded is-danger remove-button"
+      >
+        Remove <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="total">Total: ${{ totalPrice }}</div>
+
+  <div *ngIf="cart.length > 0" class="button-container">
+    <button class="button is-rounded is-success" (click)="navigateToCheckout()">
+      Checkout
+    </button>
+  </div>
+</div>

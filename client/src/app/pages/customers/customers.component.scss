@@ -1,0 +1,75 @@
+.input-container {
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 1344px;
+  text-align: center;
+
+  .control {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.container {
+  margin-top: 20px;
+
+  .selects-container {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 580px) {
+      padding: 0 10px;
+    }
+
+    @media (max-width: 460px) {
+      flex-direction: column-reverse;
+    }
+
+    .pages-container {
+      display: flex;
+      align-items: center;
+
+      @media (max-width: 460px) {
+        margin-top: 20px;
+      }
+    }
+
+    .sort-container {
+      display: flex;
+    }
+  }
+
+  .customer-container {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    padding-bottom: 5px;
+    color: rgb(74, 74, 74);
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .mail {
+      width: 250px;
+    }
+
+    .last-name {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.pagination-container {
+  background: transparent;
+  padding: 0 0 20px 0;
+
+  @media (max-width: 1024px) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}

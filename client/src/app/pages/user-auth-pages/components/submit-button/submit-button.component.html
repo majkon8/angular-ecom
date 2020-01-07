@@ -1,0 +1,19 @@
+<button
+  *ngIf="formGroup.get('confirmPassword')"
+  type="submit"
+  [disabled]="
+    formGroup.invalid ||
+    formGroup.get('confirmPassword').value !== formGroup.get('password').value
+  "
+  class="button submit-button is-primary is-medium"
+>
+  submit
+</button>
+<button
+  *ngIf="!formGroup.get('confirmPassword')"
+  type="submit"
+  [disabled]="formGroup.invalid"
+  class="button submit-button is-primary is-medium"
+>
+  submit
+</button>

@@ -1,0 +1,80 @@
+// Global styles
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+@mixin center {
+  justify-content: center;
+  align-items: center;
+}
+
+$purple: #8a4d76;
+$pink: #fa7c91;
+$brown: #757763;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+// Update Bulma's global variables
+$family-sans-serif: "Nunito", sans-serif;
+$primary: $purple;
+$link: $pink;
+
+// Update some of Bulma's component variables
+$control-border-width: 2px;
+$input-background-color: $beige-lighter;
+$input-border-color: transparent;
+$input-shadow: none;
+
+html {
+  background: linear-gradient(to right top, $pink, $brown);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.centered-content {
+  display: flex;
+  @include center;
+  width: 100%;
+  height: 100%;
+}
+
+.white-box {
+  padding: 25px;
+  background: white;
+  border-radius: 5px;
+  width: 500px;
+  max-width: 500px;
+  text-align: center;
+}
+
+@media (min-width: 551px) {
+  .white-box {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 550px) {
+  .white-box {
+    border-radius: 0;
+    height: 100%;
+    width: 550px;
+    max-width: 550px;
+    overflow: auto;
+    height: 100vh;
+  }
+}
+
+.active-link {
+  color: $pink;
+}

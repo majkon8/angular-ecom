@@ -1,0 +1,121 @@
+<nav
+  (appClickOutside)="deactivate()"
+  class="navbar is-fixed-top"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/">
+      <p class="title logo">ecom</p>
+    </a>
+    <a
+      (click)="toggleIsActive()"
+      [ngClass]="isActive && 'is-active'"
+      role="button"
+      class="navbar-burger burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbar"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbar" class="navbar-menu" [ngClass]="isActive && 'is-active'">
+    <div class="navbar-start">
+      <a
+        class="navbar-item"
+        routerLink="/products"
+        (click)="deactivate()"
+        routerLinkActive="active-link"
+      >
+        Home
+      </a>
+      <a
+        *ngIf="isAdmin$ | async"
+        class="navbar-item"
+        routerLink="/purchases"
+        (click)="deactivate()"
+        routerLinkActive="active-link"
+      >
+        Purchases
+      </a>
+      <a
+        *ngIf="isAdmin$ | async"
+        class="navbar-item"
+        routerLink="/customers"
+        (click)="deactivate()"
+        routerLinkActive="active-link"
+      >
+        Customers
+      </a>
+      <div
+        *ngIf="loggedInUserId$ | async"
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+          routerLink="/account/{{ loggedInUserId$ | async }}/details"
+          (click)="deactivate()"
+        >
+          Account
+        </a>
+        <div class="navbar-dropdown">
+          <a
+            class="navbar-item"
+            (click)="deactivate()"
+            routerLink="/account/{{ loggedInUserId$ | async }}/details"
+            routerLinkActive="active-link"
+          >
+            Details
+          </a>
+          <a
+            class="navbar-item"
+            (click)="deactivate()"
+            routerLink="/account/{{ loggedInUserId$ | async }}/purchases"
+            routerLinkActive="active-link"
+          >
+            My purchases
+          </a>
+        </div>
+      </div>
+      <a
+        *ngIf="isLoggedIn$ | async"
+        class="navbar-item"
+        routerLink="/cart"
+        routerLinkActive="active-link"
+        (click)="deactivate()"
+      >
+        Cart
+      </a>
+      <a
+        href="https://www.facebook.com/"
+        target="blank"
+        class="navbar-item"
+        (click)="deactivate()"
+      >
+        Contact
+      </a>
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item" (click)="deactivate()">
+        <a
+          *ngIf="!(isLoggedIn$ | async)"
+          class="button is-primary"
+          routerLink="/login"
+        >
+          <strong>Log in</strong>
+        </a>
+        <a
+          *ngIf="isLoggedIn$ | async"
+          class="button is-primary"
+          (click)="logout()"
+        >
+          <strong>Log out</strong>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

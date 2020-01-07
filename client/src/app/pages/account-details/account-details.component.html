@@ -1,0 +1,53 @@
+<div *ngIf="user" class="container">
+  <div class="title">Account details</div>
+  <button
+    [routerLink]="['/account', userId, 'purchases']"
+    class="button is-primary purchases-button"
+  >
+    Purchases
+  </button>
+  <div class="info-title">Personal informations</div>
+  <a
+    *ngIf="canEdit"
+    title="Edit personal informations"
+    class="edit"
+    (click)="editInfo('personal')"
+    ><i class="fas fa-edit"></i
+  ></a>
+  <div class="detail">
+    <p class="detail-title">Email:</p>
+    {{ user.email }}
+  </div>
+  <div class="detail">
+    <p class="detail-title">First name:</p>
+    {{ user?.name?.firstName }}
+  </div>
+  <div class="detail">
+    <p class="detail-title">Last name:</p>
+    {{ user?.name?.lastName }}
+  </div>
+  <div class="info-title">Address details</div>
+  <a
+    *ngIf="canEdit"
+    title="Edit address details"
+    class="edit"
+    (click)="editInfo('address')"
+    ><i class="fas fa-edit"></i
+  ></a>
+  <div class="detail">
+    <p class="detail-title">Street:</p>
+    {{ user?.address?.street }}
+  </div>
+  <div class="detail">
+    <p class="detail-title">City:</p>
+    {{ user?.address?.city }}
+  </div>
+  <div class="detail">
+    <p class="detail-title">Country:</p>
+    {{ user?.address?.country }}
+  </div>
+  <div class="detail">
+    <p class="detail-title">Postcode:</p>
+    {{ user?.address?.postcode }}
+  </div>
+</div>

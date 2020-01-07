@@ -1,0 +1,49 @@
+<div class="field" [formGroup]="formGroup">
+  <p class="control has-icons-left">
+    <input
+      [formControlName]="controlName"
+      class="input is-medium"
+      [type]="type"
+      [placeholder]="placeholder"
+    />
+    <span
+      *ngIf="controlName === 'password' || controlName === 'confirmPassword'"
+      class="icon is-small is-left"
+    >
+      <i class="fas fa-lock"></i>
+    </span>
+    <span *ngIf="controlName === 'email'" class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+  </p>
+</div>
+<div *ngIf="controlName === 'email'">
+  <div
+    class="form-error-message has-text-danger"
+    *ngIf="formGroup.get('email').invalid && formGroup.get('email').value"
+  >
+    Invalid email address
+  </div>
+</div>
+<div *ngIf="controlName === 'password'">
+  <div
+    class="form-error-message has-text-danger"
+    *ngIf="formGroup.get('password').invalid && formGroup.get('password').value"
+  >
+    Password must contain at least 1 letter, one uppercase, one lowercase and be
+    minimum 8 characters long
+  </div>
+</div>
+<div *ngIf="controlName === 'confirmPassword'">
+  <div
+    class="form-error-message has-text-danger"
+    *ngIf="
+      formGroup.get('confirmPassword').value !==
+        formGroup.get('password').value &&
+      formGroup.get('confirmPassword').dirty &&
+      !formGroup.get('password').invalid
+    "
+  >
+    Passwords must match
+  </div>
+</div>

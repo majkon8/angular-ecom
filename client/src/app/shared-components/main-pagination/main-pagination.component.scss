@@ -1,0 +1,15 @@
+$purple: #8a4d76;
+
+.is-current {
+  background: $purple !important;
+  border-color: $purple !important;
+}
+
+.pagination-previous,
+.pagination-next {
+  background: white;
+}
+
+.pagination-link {
+  background: white;
+}

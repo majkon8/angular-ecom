@@ -1,0 +1,61 @@
+<div class="dropdown" [ngClass]="isActive && 'is-active'">
+  <div
+    class="dropdown-trigger"
+    (click)="toggleIsActive()"
+    (appClickOutside)="deactivate()"
+  >
+    <button
+      class="button is-rounded"
+      aria-haspopup="true"
+      aria-controls="dropdown-menu"
+    >
+      <span>{{ perPage }}</span>
+      <span class="icon is-small">
+        <i
+          class="fas fa-angle-down"
+          [ngClass]="isActive ? 'fa-angle-up' : 'fa-angle-down'"
+          aria-hidden="true"
+        ></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <a
+        class="dropdown-item"
+        [ngClass]="perPage === 20 && 'is-active'"
+        (click)="selectPerPage($event.target.textContent)"
+      >
+        20
+      </a>
+      <a
+        class="dropdown-item"
+        [ngClass]="perPage === 40 && 'is-active'"
+        (click)="selectPerPage($event.target.textContent)"
+      >
+        40
+      </a>
+      <a
+        class="dropdown-item"
+        [ngClass]="perPage === 60 && 'is-active'"
+        (click)="selectPerPage($event.target.textContent)"
+      >
+        60
+      </a>
+      <a
+        class="dropdown-item"
+        [ngClass]="perPage === 80 && 'is-active'"
+        (click)="selectPerPage($event.target.textContent)"
+      >
+        80
+      </a>
+      <a
+        class="dropdown-item"
+        [ngClass]="perPage === 100 && 'is-active'"
+        (click)="selectPerPage($event.target.textContent)"
+      >
+        100
+      </a>
+    </div>
+  </div>
+</div>

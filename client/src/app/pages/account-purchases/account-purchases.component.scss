@@ -1,0 +1,230 @@
+.input-container {
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 1344px;
+  text-align: center;
+
+  .control {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.container {
+  margin-top: 20px;
+
+  .loading {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .title {
+    @media (max-width: 360px) {
+      font-size: 26px;
+    }
+  }
+
+  .details-button {
+    margin-bottom: 20px;
+  }
+
+  .selects-container {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 580px) {
+      padding: 0 10px;
+    }
+
+    @media (max-width: 460px) {
+      flex-direction: column-reverse;
+    }
+
+    .pages-container {
+      display: flex;
+      align-items: center;
+
+      @media (max-width: 460px) {
+        margin-top: 20px;
+      }
+    }
+
+    .sort-container {
+      display: flex;
+    }
+  }
+
+  .purchase-container {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    padding-bottom: 5px;
+
+    .purchase {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+
+      @media (max-width: 950px) {
+        display: block;
+      }
+
+      .user-name {
+        font-weight: bold;
+        max-width: 190px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgb(74, 74, 74);
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        .last-name {
+          text-transform: uppercase;
+        }
+      }
+
+      .image-and-name {
+        display: flex;
+        align-items: center;
+
+        @media (max-width: 420px) {
+          display: block;
+        }
+
+        .image {
+          width: 80px;
+
+          @media (max-width: 950px) {
+            display: inline-block;
+            width: 180px;
+          }
+
+          @media (max-width: 520px) {
+            width: 130px;
+          }
+
+          @media (max-width: 420px) {
+            display: block;
+            margin: 0 auto;
+            width: 180px;
+          }
+        }
+
+        .name {
+          margin-left: 5px;
+          text-transform: uppercase;
+          font-weight: bold;
+          color: rgb(74, 74, 74);
+          width: 250px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          @media (max-width: 950px) {
+            width: unset;
+            display: inline-block;
+            line-height: 156px;
+            margin-left: 50px;
+            font-size: 18px;
+            max-width: 450px;
+          }
+
+          @media (max-width: 720px) {
+            max-width: 350px;
+          }
+
+          @media (max-width: 620px) {
+            margin-left: 15px;
+            max-width: 280px;
+            font-size: 16px;
+          }
+
+          @media (max-width: 520px) {
+            margin-left: 5px;
+            max-width: 250px;
+            line-height: 112.5px;
+          }
+
+          @media (max-width: 420px) {
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+            line-height: 30px;
+          }
+        }
+      }
+      .prop {
+        font-weight: bold;
+        text-align: center;
+
+        @media (max-width: 950px) {
+          display: inline-block;
+          margin-right: 160px;
+          width: 100%;
+          text-align: left;
+        }
+
+        @media (max-width: 720px) {
+          margin-right: 110px;
+        }
+
+        @media (max-width: 620px) {
+          margin-right: 35px;
+        }
+
+        @media (max-width: 460px) {
+          margin-right: 15px;
+        }
+
+        @media (max-width: 420px) {
+          display: block;
+          width: 100%;
+          text-align: left;
+          margin: 5px 0;
+        }
+      }
+
+      .buyer {
+        width: 160px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .date {
+        width: 150px;
+      }
+
+      .qty {
+        width: 60px;
+      }
+
+      .price {
+        width: 135px;
+
+        @media (max-width: 950px) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.pagination-container {
+  background: transparent;
+  padding: 0 0 20px 0;
+
+  @media (max-width: 1024px) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}

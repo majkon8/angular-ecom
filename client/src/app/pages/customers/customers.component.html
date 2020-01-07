@@ -1,0 +1,62 @@
+<div class="input-container">
+  <div class="control has-icons-left">
+    <input
+      class="input is-medium is-rounded"
+      type="text"
+      placeholder="Search by name or email"
+      [(ngModel)]="searchFor"
+      (input)="filterByName()"
+    />
+    <span class="icon is-left">
+      <i class="fas fa-search"></i>
+    </span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="title">Customers</div>
+
+  <div class="selects-container">
+    <div class="pages-container">
+      <app-per-page
+        (perPageSelected)="selectPerPage($event)"
+        [perPage]="perPage"
+      ></app-per-page>
+      <app-secondary-pagination
+        *ngIf="filteredAndSortedCustomers"
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChanged)="setCurrentPage($event)"
+      ></app-secondary-pagination>
+    </div>
+    <div class="sort-container">
+      <app-sort-by
+        page="customers"
+        [toSortArr]="filteredAndSortedCustomers"
+        [currentSort]="currentSort"
+        (sortChanged)="changeSort($event)"
+      ></app-sort-by>
+    </div>
+  </div>
+
+  <a
+    class="customer-container"
+    *ngFor="let customer of filteredAndSortedCustomers"
+    [href]="'http://localhost:4200/account/' + customer._id + '/details'"
+    (click)="goToUser($event, customer._id)"
+  >
+    <div class="name">
+      Name: <span class="last-name">{{ customer.name.lastName }}</span>
+      {{ customer.name.firstName }}
+    </div>
+    <div class="mail">Email: {{ customer.email }}</div>
+  </a>
+</div>
+
+<div class="container pagination-container">
+  <app-main-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChanged)="setCurrentPage($event)"
+  ></app-main-pagination>
+</div>

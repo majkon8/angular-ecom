@@ -1,0 +1,14 @@
+@import "../../../../../main-styles.scss";
+
+.form-header {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.form-break {
+  height: 5px;
+  background: $primary;
+  width: 80px;
+  margin: 0 auto;
+  margin-bottom: 35px;
+}
