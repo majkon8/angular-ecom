@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { handleCORS } = require("./middleware");
+const path = require("path");
 require("./mongoose");
 require("./middleware");
 
@@ -15,6 +16,10 @@ app.use(handleCORS);
 require("./routes/user.routes")(app);
 require("./routes/products.routes")(app);
 require("./routes/purchases.routes")(app);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
