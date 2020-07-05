@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect("mongodb://localhost:27017/ecom", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/ecom", {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(e => {
+  .catch((e) => {
     console.log("Error while attempting to connect to MongoDB");
     console.log(e);
   });
@@ -16,5 +16,5 @@ mongoose.set("useCreateIndex", true);
 mongoose.set("useFindAndModify", false);
 
 module.exports = {
-  mongoose
+  mongoose,
 };
