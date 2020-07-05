@@ -1,6 +1,6 @@
 const { authenticate, adminAuthenticate } = require("../middleware");
 
-module.exports = app => {
+module.exports = (app) => {
   const products = require("../controlers/product.controler");
 
   /* GET /products */
