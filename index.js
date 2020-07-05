@@ -18,7 +18,7 @@ require("./routes/products.routes")(app);
 require("./routes/purchases.routes")(app);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "dist", "client", "index.html"));
 });
 
 app.listen(port, () => {
