@@ -42,6 +42,7 @@ export class ItemCardComponent implements OnInit {
 
   manageCart(event: any): void {
     event.stopPropagation()
+    event.preventDefault()
     if (!this.isLoggedIn) {
       this.router.navigate(["/login"]);
       return;

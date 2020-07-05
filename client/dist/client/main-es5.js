@@ -1837,6 +1837,7 @@
                 };
                 ItemCardComponent.prototype.manageCart = function (event) {
                     event.stopPropagation();
+                    event.preventDefault();
                     if (!this.isLoggedIn) {
                         this.router.navigate(["/login"]);
                         return;
