@@ -4,6 +4,6 @@ It is build with Angular 8 on front-end and Express.js on back-end with MongoDB.
 It was my first major project build with Angular.  
 # Preview
 Some screenshots for quick insight  
-https://imgur.com/a/wv5vtnf
+https://imgur.com/a/0iCiMCQ
 # Live app
 https://limitless-thicket-71495.herokuapp.com/
