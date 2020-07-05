@@ -40,7 +40,8 @@ export class ItemCardComponent implements OnInit {
     if (this.isLoggedInSubscription) this.isLoggedInSubscription.unsubscribe();
   }
 
-  manageCart(): void {
+  manageCart(event: any): void {
+    event.stopPropagation()
     if (!this.isLoggedIn) {
       this.router.navigate(["/login"]);
       return;

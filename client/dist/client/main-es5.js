@@ -116,7 +116,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<a [href]=\"'/product/' + product._id\" class=\"container\">\n  <div class=\"top\">\n    <figure class=\"image\">\n      <img [src]=\"product.imageUrl\" />\n    </figure>\n  </div>\n  <div class=\"bottom\">\n    <div [title]=\"product.name.toUpperCase()\" class=\"name\">\n      {{ product.name }}\n    </div>\n    <div class=\"description has-text-grey\">\n      {{ product.shortDescription }}\n    </div>\n    <div class=\"price has-text-success\">${{ product.price }}</div>\n    <button\n      class=\"button cart-button is-rounded is-pulled-right\"\n      (click)=\"manageCart(); $event.stopPropagation()\"\n      [ngClass]=\"{ 'in-cart': addedToCart, 'not-in-cart': !addedToCart }\"\n    >\n      <i class=\"fas fa-cart-plus\"></i>\n    </button>\n    <div *ngIf=\"isAdmin\" class=\"admin-panel\">\n      <div\n        title=\"edit\"\n        class=\"admin-button edit\"\n        (click)=\"editProduct($event); $event.stopPropagation()\"\n      >\n        <i class=\"fas fa-edit\"></i>\n      </div>\n      <div\n        title=\"delete\"\n        class=\"admin-button trash\"\n        (click)=\"deleteProduct($event); $event.stopPropagation()\"\n      >\n        <i class=\"fas fa-trash-alt\"></i>\n      </div>\n    </div>\n  </div>\n</a>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<a [href]=\"'/product/' + product._id\" class=\"container\">\n  <div class=\"top\">\n    <figure class=\"image\">\n      <img [src]=\"product.imageUrl\" />\n    </figure>\n  </div>\n  <div class=\"bottom\">\n    <div [title]=\"product.name.toUpperCase()\" class=\"name\">\n      {{ product.name }}\n    </div>\n    <div class=\"description has-text-grey\">\n      {{ product.shortDescription }}\n    </div>\n    <div class=\"price has-text-success\">${{ product.price }}</div>\n    <button\n      class=\"button cart-button is-rounded is-pulled-right\"\n      (click)=\"manageCart($event);\"\n      [ngClass]=\"{ 'in-cart': addedToCart, 'not-in-cart': !addedToCart }\"\n    >\n      <i class=\"fas fa-cart-plus\"></i>\n    </button>\n    <div *ngIf=\"isAdmin\" class=\"admin-panel\">\n      <div\n        title=\"edit\"\n        class=\"admin-button edit\"\n        (click)=\"editProduct($event); $event.stopPropagation()\"\n      >\n        <i class=\"fas fa-edit\"></i>\n      </div>\n      <div\n        title=\"delete\"\n        class=\"admin-button trash\"\n        (click)=\"deleteProduct($event); $event.stopPropagation()\"\n      >\n        <i class=\"fas fa-trash-alt\"></i>\n      </div>\n    </div>\n  </div>\n</a>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/home/home.component.html": 
@@ -1835,7 +1835,8 @@
                     if (this.isLoggedInSubscription)
                         this.isLoggedInSubscription.unsubscribe();
                 };
-                ItemCardComponent.prototype.manageCart = function () {
+                ItemCardComponent.prototype.manageCart = function (event) {
+                    event.stopPropagation();
                     if (!this.isLoggedIn) {
                         this.router.navigate(["/login"]);
                         return;
