@@ -14,7 +14,7 @@
     <div class="price has-text-success">${{ product.price }}</div>
     <button
       class="button cart-button is-rounded is-pulled-right"
-      (click)="manageCart($event);"
+      (click)="manageCart($event)"
       [ngClass]="{ 'in-cart': addedToCart, 'not-in-cart': !addedToCart }"
     >
       <i class="fas fa-cart-plus"></i>

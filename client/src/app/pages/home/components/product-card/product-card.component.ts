@@ -13,7 +13,7 @@ import { MatDialog } from "@angular/material";
 @Component({
   selector: "app-product-card",
   templateUrl: "./product-card.component.html",
-  styleUrls: ["./product-card.component.scss"]
+  styleUrls: ["./product-card.component.scss"],
 })
 export class ItemCardComponent implements OnInit {
   isLoggedIn: boolean;
@@ -32,7 +32,7 @@ export class ItemCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedInSubscription = this.authService.isLoggedInObs$.subscribe(
-      isLoggedIn => (this.isLoggedIn = isLoggedIn)
+      (isLoggedIn) => (this.isLoggedIn = isLoggedIn)
     );
   }
 
@@ -41,8 +41,8 @@ export class ItemCardComponent implements OnInit {
   }
 
   manageCart(event: any): void {
-    event.stopPropagation()
-    event.preventDefault()
+    event.stopPropagation();
+    event.preventDefault();
     if (!this.isLoggedIn) {
       this.router.navigate(["/login"]);
       return;
@@ -74,9 +74,9 @@ export class ItemCardComponent implements OnInit {
     const dialogRef = this.dialog.open(ProductFormComponent, {
       width: "580px",
       height: "90%",
-      data: { type: "edit", product: this.product }
+      data: { type: "edit", product: this.product },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.productsService
           .editProduct(
