@@ -3,48 +3,54 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class WebRequestService {
   readonly ROOT_URL: string;
 
   constructor(private http: HttpClient) {
+    let baseUrl: string;
+    if (window.location.origin.includes("localhost")) {
+      this.ROOT_URL = "http://localhost:3000";
+    } else {
+      this.ROOT_URL = "";
+    }
   }
 
   get(uri: string, headers: any = ""): Observable<Object> {
-    return this.http.get(`/${uri}`, {
+    return this.http.get(`${this.ROOT_URL}/${uri}`, {
       headers,
-      observe: "response"
+      observe: "response",
     });
   }
 
   post(uri: string, payload: Object, headers: any = ""): Observable<Object> {
-    return this.http.post(`/${uri}`, payload, {
+    return this.http.post(`${this.ROOT_URL}/${uri}`, payload, {
       headers,
-      observe: "response"
+      observe: "response",
     });
   }
 
   patch(uri: string, payload: Object, headers: any = ""): Observable<Object> {
-    return this.http.patch(`/${uri}`, payload, {
+    return this.http.patch(`${this.ROOT_URL}/${uri}`, payload, {
       headers,
-      observe: "response"
+      observe: "response",
     });
   }
 
   delete(uri: string, headers: any = ""): Observable<Object> {
-    return this.http.delete(`/${uri}`, {
+    return this.http.delete(`${this.ROOT_URL}/${uri}`, {
       headers,
-      observe: "response"
+      observe: "response",
     });
   }
 
   login(email: string, password: string): Observable<HttpResponse<Object>> {
     return this.http.post(
-      `/users/login`,
+      `${this.ROOT_URL}/users/login`,
       {
         email,
-        password
+        password,
       },
       { observe: "response" }
     );
@@ -52,10 +58,10 @@ export class WebRequestService {
 
   signup(email: string, password: string): Observable<HttpResponse<Object>> {
     return this.http.post(
-      `/users`,
+      `${this.ROOT_URL}/users`,
       {
         email,
-        password
+        password,
       },
       { observe: "response" }
     );
@@ -63,7 +69,7 @@ export class WebRequestService {
 
   forgotPassword(email: string): Observable<HttpResponse<Object>> {
     return this.http.post(
-      `/users/forgot-password`,
+      `${this.ROOT_URL}/users/forgot-password`,
       { email },
       { observe: "response" }
     );
@@ -74,7 +80,7 @@ export class WebRequestService {
     password: string
   ): Observable<HttpResponse<Object>> {
     return this.http.patch(
-      `/users/reset-password`,
+      `${this.ROOT_URL}/users/reset-password`,
       { email, password },
       { observe: "response" }
     );
@@ -82,7 +88,7 @@ export class WebRequestService {
 
   checkToken(token: string): Observable<HttpResponse<Object>> {
     return this.http.post(
-      `/users/reset/check-token`,
+      `${this.ROOT_URL}/users/reset/check-token`,
       { token },
       { observe: "response" }
     );
