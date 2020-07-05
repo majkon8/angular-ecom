@@ -115,7 +115,7 @@ export class AuthService {
 
   getNewAccessToken(): Observable<HttpResponse<any>> {
     return this.http
-      .get(`${this.webService.ROOT_URL}/users/me/access-token`, {
+      .get(`/users/me/access-token`, {
         headers: {
           "x-refresh-token": this.getRefreshToken(),
           _id: this.getUserId()

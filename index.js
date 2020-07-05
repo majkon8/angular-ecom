@@ -6,6 +6,8 @@ require("./middleware");
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 
 app.use(handleCORS);
@@ -14,6 +16,6 @@ require("./routes/user.routes")(app);
 require("./routes/products.routes")(app);
 require("./routes/purchases.routes")(app);
 
-app.listen(3000, () => {
-  console.log("Server is listening on port 3000");
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
 });

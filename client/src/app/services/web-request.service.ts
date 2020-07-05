@@ -9,32 +9,31 @@ export class WebRequestService {
   readonly ROOT_URL: string;
 
   constructor(private http: HttpClient) {
-    this.ROOT_URL = "http://localhost:3000";
   }
 
   get(uri: string, headers: any = ""): Observable<Object> {
-    return this.http.get(`${this.ROOT_URL}/${uri}`, {
+    return this.http.get(`/${uri}`, {
       headers,
       observe: "response"
     });
   }
 
   post(uri: string, payload: Object, headers: any = ""): Observable<Object> {
-    return this.http.post(`${this.ROOT_URL}/${uri}`, payload, {
+    return this.http.post(`/${uri}`, payload, {
       headers,
       observe: "response"
     });
   }
 
   patch(uri: string, payload: Object, headers: any = ""): Observable<Object> {
-    return this.http.patch(`${this.ROOT_URL}/${uri}`, payload, {
+    return this.http.patch(`/${uri}`, payload, {
       headers,
       observe: "response"
     });
   }
 
   delete(uri: string, headers: any = ""): Observable<Object> {
-    return this.http.delete(`${this.ROOT_URL}/${uri}`, {
+    return this.http.delete(`/${uri}`, {
       headers,
       observe: "response"
     });
@@ -42,7 +41,7 @@ export class WebRequestService {
 
   login(email: string, password: string): Observable<HttpResponse<Object>> {
     return this.http.post(
-      `${this.ROOT_URL}/users/login`,
+      `/users/login`,
       {
         email,
         password
@@ -53,7 +52,7 @@ export class WebRequestService {
 
   signup(email: string, password: string): Observable<HttpResponse<Object>> {
     return this.http.post(
-      `${this.ROOT_URL}/users`,
+      `/users`,
       {
         email,
         password
@@ -64,7 +63,7 @@ export class WebRequestService {
 
   forgotPassword(email: string): Observable<HttpResponse<Object>> {
     return this.http.post(
-      `${this.ROOT_URL}/users/forgot-password`,
+      `/users/forgot-password`,
       { email },
       { observe: "response" }
     );
@@ -75,7 +74,7 @@ export class WebRequestService {
     password: string
   ): Observable<HttpResponse<Object>> {
     return this.http.patch(
-      `${this.ROOT_URL}/users/reset-password`,
+      `/users/reset-password`,
       { email, password },
       { observe: "response" }
     );
@@ -83,7 +82,7 @@ export class WebRequestService {
 
   checkToken(token: string): Observable<HttpResponse<Object>> {
     return this.http.post(
-      `${this.ROOT_URL}/users/reset/check-token`,
+      `/users/reset/check-token`,
       { token },
       { observe: "response" }
     );
