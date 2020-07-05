@@ -5,3 +5,5 @@ It was my first major project build with Angular.
 # Preview
 Some screenshots for quick insight  
 https://imgur.com/a/wv5vtnf
+# Live app
+https://limitless-thicket-71495.herokuapp.com/
