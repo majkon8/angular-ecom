@@ -13,11 +13,11 @@ app.use(bodyParser.json());
 
 app.use(handleCORS);
 
-app.use(express.static(__dirname + "/dist/client"));
-
 require("./routes/user.routes")(app);
 require("./routes/products.routes")(app);
 require("./routes/purchases.routes")(app);
+
+app.use(express.static(path.join(__dirname, "client", "dist", "client")));
 
 app.get("*", (req, res) => {
   res.sendFile(
