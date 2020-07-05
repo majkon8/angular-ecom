@@ -9,7 +9,6 @@ export class WebRequestService {
   readonly ROOT_URL: string;
 
   constructor(private http: HttpClient) {
-    let baseUrl: string;
     if (window.location.origin.includes("localhost")) {
       this.ROOT_URL = "http://localhost:3000";
     } else {
