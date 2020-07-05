@@ -67,9 +67,7 @@
           "
           *ngIf="isAdmin"
           class="user-name"
-          [href]="
-            'http://localhost:4200/account/' + purchase._userId + '/details'
-          "
+          [href]="'/account/' + purchase._userId + '/details'"
           (click)="goToUser($event, purchase._userId)"
         >
           Buyer:
@@ -83,7 +81,7 @@
             <img [src]="purchase.product.imageUrl" />
           </div>
           <a
-            [href]="'http://localhost:4200/product/' + purchase.product._id"
+            [href]="'/product/' + purchase.product._id"
             class="name"
             (click)="goToProduct($event, purchase.product._id)"
             >{{ purchase.product.name }}</a

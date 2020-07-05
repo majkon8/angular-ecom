@@ -5,7 +5,6 @@ import { Purchase } from "src/app/models/purchase.model";
 import { ProductsService } from "src/app/services/products.service";
 import { ProductParams } from "../home/home.component";
 import { AuthService } from "src/app/services/auth.service";
-import { Observable } from "rxjs";
 
 @Component({
   selector: "app-account-purchases",

@@ -42,7 +42,7 @@
   <a
     class="customer-container"
     *ngFor="let customer of filteredAndSortedCustomers"
-    [href]="'http://localhost:4200/account/' + customer._id + '/details'"
+    [href]="'/account/' + customer._id + '/details'"
     (click)="goToUser($event, customer._id)"
   >
     <div class="name">
